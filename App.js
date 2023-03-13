@@ -1,20 +1,30 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+// Import React
+import React, { Fragment } from "react";
+
+// Import Expo
+import { StatusBar } from "expo-status-bar";
+
+// Import Router
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { NavigationContainer } from "@react-navigation/native";
+
+// Import Pages
+import Scanner from "./src/screens/Scanner";
+import Home from "./src/screens/Home";
+
+// Init Stack
+const Stack = createNativeStackNavigator();
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+	return (
+		<Fragment>
+			<StatusBar style="auto" networkActivityIndicatorVisible />
+			<NavigationContainer>
+				<Stack.Navigator initialRouteName="Home">
+					<Stack.Screen name="Home" component={Home} />
+					<Stack.Screen name="Scanner" component={Scanner} />
+				</Stack.Navigator>
+			</NavigationContainer>
+		</Fragment>
+	);
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
